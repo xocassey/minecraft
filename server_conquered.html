@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Minecraft PvP Tier Rankings</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #121212;
+  color: white;
+}
+
+header {
+  background: #2ecc71;
+  padding: 20px;
+  text-align: center;
+  font-size: 28px;
+}
+
+.container {
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e1e1e;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background: #27ae60;
+}
+
+tr:nth-child(even) {
+  background: #2a2a2a;
+}
+
+/* Tier Colors */
+.S { color: #ff3b3b; font-weight: bold; }
+.A { color: #ff8c00; }
+.B { color: #ffd700; }
+.C { color: #00bfff; }
+.D { color: #aaaaaa; }
+
+button {
+  padding: 8px 12px;
+  background: #2ecc71;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>⚔️ Minecraft PvP Tier Rankings ⚔️</header>
+
+<div class="container">
+
+<input type="text" id="search" placeholder="Search player..." onkeyup="searchPlayer()">
+
+<table>
+<thead>
+<tr>
+  <th>Rank</th>
+  <th>Player</th>
+  <th>ELO</th>
+  <th>W/L</th>
+  <th>Tier</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+</table>
+
+</div>
+
+<script>
+let players = [
+  {name: "Netherite_VI", elo: 1800, wins: 30, losses: 10},
+  {name: "EnderKing", elo: 1700, wins: 25, losses: 12},
+  {name: "PvPMaster", elo: 1600, wins: 20, losses: 15},
+  {name: "CreeperHunter", elo: 1400, wins: 18, losses: 17},
+  {name: "DiamondGod", elo: 1200, wins: 12, losses: 20},
+  {name: "SteveX", elo: 900, wins: 8, losses: 25}
+];
+
+// Tier system
+function getTier(elo) {
+  if (elo >= 1800) return "S";
+  if (elo >= 1600) return "A";
+  if (elo >= 1400) return "B";
+  if (elo >= 1100) return "C";
+  return "D";
+}
+
+// Render leaderboard
+function renderTable(data) {
+  const table = document.getElementById("tableBody");
+  table.innerHTML = "";
+
+  data.sort((a,b) => b.elo - a.elo);
+
+  data.forEach((p, i) => {
+    const tier = getTier(p.elo);
+
+    table.innerHTML += `
+      <tr>
+        <td>#${i+1}</td>
+        <td>${p.name}</td>
+        <td>${p.elo}</td>
+        <td>${p.wins}/${p.losses}</td>
+        <td class="${tier}">${tier}</td>
+      </tr>
+    `;
+  });
+}
+
+// Search
+function searchPlayer() {
+  const input = document.getElementById("search").value.toLowerCase();
+  const filtered = players.filter(p => p.name.toLowerCase().includes(input));
+  renderTable(filtered);
+}
+
+// Simulate match result (ELO system)
+function updateElo(playerA, playerB, winner) {
+  let K = 30;
+
+  let expectedA = 1 / (1 + Math.pow(10, (playerB.elo - playerA.elo)/400));
+  let expectedB = 1 / (1 + Math.pow(10, (playerA.elo - playerB.elo)/400));
+
+  if (winner === playerA.name) {
+    playerA.elo += Math.round(K * (1 - expectedA));
+    playerB.elo += Math.round(K * (0 - expectedB));
+    playerA.wins++;
+    playerB.losses++;
+  } else {
+    playerB.elo += Math.round(K * (1 - expectedB));
+    playerA.elo += Math.round(K * (0 - expectedA));
+    playerB.wins++;
+    playerA.losses++;
+  }
+
+  renderTable(players);
+}
+
+// Example match (you can remove this later)
+setTimeout(() => {
+  updateElo(players[0], players[1], players[0].name);
+}, 3000);
+
+renderTable(players);
+</script>
+<script>
+const API_KEY = "PASTE_YOUR_HYPIXEL_KEY_HERE";
+
+async function getPlayerData(username) {
+  try {
+    // Get UUID from Mojang
+    let res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${username}`);
+    let data = await res.json();
+    let uuid = data.id;
+
+    // Get Hypixel stats
+    let hypixel = await fetch(`https://api.hypixel.net/player?key=${API_KEY}&uuid=${uuid}`);
+    let hypixelData = await hypixel.json();
+
+    let stats = hypixelData.player.stats;
+
+    // Example: Bedwars stats (you can change mode)
+    let wins = stats.Bedwars?.wins_bedwars || 0;
+    let losses = stats.Bedwars?.losses_bedwars || 0;
+
+    let elo = (wins * 20) - (losses * 10) + 1000;
+
+    return {
+      name: username,
+      elo: elo,
+      wins: wins,
+      losses: losses
+    };
+
+  } catch (err) {
+    console.log("Error:", err);
+  }
+}
+
+// Load players dynamically
+async function loadPlayers() {
+  const usernames = ["Netherite_VI", "Technoblade", "Dream"];
+
+  let players = [];
+
+  for (let name of usernames) {
+    let player = await getPlayerData(name);
+    if (player) players.push(player);
+  }
+
+  renderTable(players);
+}
+
+loadPlayers();
+</script>
+
+</body>
+</html>
