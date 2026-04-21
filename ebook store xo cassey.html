@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Xocassey Ebook Store</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #searchBar {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ebook-card {
+      background: white;
+      border-radius: 10px;
+      width: 200px;
+      margin: 15px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    .ebook-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .ebook-card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+    .ebook-card p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .buy-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .buy-btn:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<header>
+  <h1>Minecraft Ebook Store</h1>
+    <span class="search-icon">🔎</span>
+    <input type="text" id="searchBar" placeholder="Search ebooks...">
+</header>
+
+<main id="ebookList"></main>
+
+
+<script>
+  const ebooks = [
+ 
+    {
+      id: 3,
+      title: "Mastering Web Design",
+      author: "Alex Johnson",
+      price: "$15",
+      image: "https://via.placeholder.com/200"
+    },
+    {
+      id: 4,
+      title: " The minecraft 100-Player Death Swap Challenge(sword4000)",
+      author: "Cassey M Davidson",
+      price: "$1.99",
+      image: "sword4000.jpg",
+      description: `1. Introduction: The Rules of the Game
+I’m Sword4000, and today I’m throwing myself into the absolute chaos of the TP Death Swap. Imagine 100 players dropped into a massive arena with global PvP enabled from the second the clock starts ticking. But here is the real kicker: every five minutes, everyone on the server is forced to swap positions with a random opponent. The goal? You’ve got five minutes to engineer a lethal trap so that the person who swaps into your shoes gets absolutely battered. You have to survive the traps you’re teleported into while simultaneously being the most toxic architect on the server. It’s a constant, high-adrenaline race against a relentless timer where your only focus is blood. In this game, your greatest weapon isn't just your armour; it’s the lethal environment you leave behind for the next poor soul.
+
+2. Chapter 1: Jungle Beginnings and Village Looting
+The game kicked off in a dense, suffocating jungle. My first tactical instinct? Sprint left immediately...
+
+3. Chapter 2: The High-Altitude Tree Trap
+The first swap was a heart-pacer...
+
+4. Chapter 3: The Mining Grind and the Piercing Sword
+To survive the mid-game...
+
+5. Chapter 4: The Deadly Lava Swap
+As we pushed deeper...
+
+6. Chapter 5: Crafting the TNT Launcher
+Environmental traps are great...
+
+7. Chapter 6: Looting Scyther’s Base and the Final Duel at Mid
+The finale converged...
+
+8. Conclusion: The Last Man Standing
+Victory came down to timing, traps, and skill.`
+    }
+  ];
+
+  function displayEbooks(list) {
+    const ebookList = document.getElementById("ebookList");
+    ebookList.innerHTML = "";
+
+    list.forEach(book => {
+      ebookList.innerHTML += `
+        <div class="ebook-card">
+          <img src="${book.image}" alt="${book.title}">
+          <h3>${book.title}</h3>
+          
+          <p>by ${book.author}</p>
+          <p>${book.price}</p>
+          <a href="https://www.paypal.com/paypalme/dmigoya" target="_blank">
+    <button style="padding: 5px; background: green; color: white; border: none;">
+        Buy Now
+    </button>
+</a>
+        </div>
+      `;
+    });
+  }
+
+  document.getElementById("searchBar").addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+
+    const filtered = ebooks.filter(book =>
+      book.title.toLowerCase().includes(value)
+    );
+
+    displayEbooks(filtered);
+  });
+
+  function buyEbook(id) {
+    const book = ebooks.find(b => b.id === id);
+    alert("You selected: " + book.title + "\nPrice: " + book.price);
+  }
+
+  displayEbooks(ebooks);
+</script>
+
+</body>
+</html>

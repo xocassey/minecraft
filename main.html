@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="UTF-8">
+        <title>Xocassey minecraft ebooks</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <container>
+          
+        <h1>💎💥💖Welcome to Xocassey Web!💖💥💎</h1>
+        <nav>   <a href="ebook store xo cassey.html">
+  <button class="Ebook-button">Ebooks</button>
+</a>
+<a href="https://mctiers.com/rankings/overall" target="_blank">
+     <button class="rankings-button">PVP Rankings</button>
+</a>
+    </style>
+</a>
+</nav>
+            
+    <style>
+      body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+ 
+   
+
+  h1 {
+    color: #2ecc71;
+  }
+
+  /* SEARCH BAR */
+  .search-box {
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s;
+    background: #1f1f1f;
+    color: white;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+  }
+
+  .search-box input:focus {
+    box-shadow: 0 0 20px #2ecc71;
+    transform: scale(1.02);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-size: 18px;
+    color: #2ecc71;
+  }
+
+  /* RESULTS */
+  .results {
+    width: 400px;
+    max-width: 90%;
+    margin-top: 20px;
+  }
+
+  .item {
+    background: #1f1f1f;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border-left: 4px solid #2ecc71;
+    transition: 0.2s;
+  }
+
+  .item:hover {
+    transform: translateX(5px);
+  }
+</style>
+
+
+ 
+  
+
+<div class="search-box">
+  <span class="search-icon">🔎</span>
+  <input type="text" id="search" placeholder="Search ebooks, items, guides...">
+</div>
+
+<div class="results" id="results"></div>
+
+<script>
+  // Sample data (you can replace with API data later)
+  fetch("http://localhost:3000/api/ebooks")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // shows API data
+  })
+  .catch(error => console.error(error));
+  const data = [
+    "Minecraft Survival Guide eBook",
+    "How to Defeat the Ender Dragon",
+    "Minecraft Player's ebook",
+    "Minecraft pvp guide",
+    "Best Minecraft mods of 2024",];
+
+     const searchInput = document.getElementById("search");
+     const results = document.getElementById("results");
+
+     function display(items) {
+      results.innerHTML = "xocassey web is loading...";
+
+      if (items.length === 0) {
+       results.innerHTML = "<p>No results found 😢</p>";
+       return;
+      }
+
+     items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.textContent = item;
+      results.appendChild(div);
+      });
+     }
+
+    // initial load
+    display(data);
+
+    // live search
+   searchInput.addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+
+     const filtered = data.filter(item =>
+      item.toLowerCase().includes(value)
+       );
+
+     display(filtered);
+    });
+      </script>
+      
+  
+                    <style>
+                        .Ebook-button {
+                            background-color:white;
+                            color:black;
+                            border-radius: 10px;
+                            border: none;
+                            cursor: pointer;
+                            width: 100px;
+                            height: 30px;
+                            font-weight: bold;
+                            margin-left: 0px;
+                            border-color: blue;
+                            border: 2px solid;
+
+                        }
+                    </style>
+                    <style>
+                                
+                        h1 {
+                     color:blue;
+                        }
+                        body {
+                            background-image: url("../minecrat\ back.jpg back.jpg ");
+                            background-size: cover;
+                        }
+                    </style>        
+        <style>
+            h2 {
+                color: red;
+            }
+            p {
+                color: white;
+            }
+        </style>
+            
+              <footer>
+
+                    <h1>💥💖Minecraft💖💥</h1>
+        
+        <p>Minecraft ebooks are the best ebooks for minecraft players.
+            We have a wide variety of ebooks that will help you improve your minecraft skills and knowledge.
+            Whether you're a beginner or an experienced player, we have something for everyone.
+            Our ebooks cover a wide range of topics, including building, redstone, survival, and more. 
+            We also have a section dedicated to minecraft mods and plugins, where you can find the latest and greatest mods to enhance your minecraft experience.
+            So why wait? Start exploring our collection of minecraft ebooks today and take your minecraft skills to the next level!</p>
+                  <h3>My accounts</h3>
+            <p>Minecraft Username:Netherite_VI</p>
+            <p>Discord:netherite_vi</p>
+            <a href =server_conquered.html>
+                <button style="padding: 10px; background: #2ecc71; color: white; border: none;">
+                    Server I conquered
+                </button>
+            </a>
+
+
+            <h2>💥MINECRAFT PLAYERS💥</h>
+            <style>
+                .rankings-button {
+                background-color:black;
+                color:white;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                width: 140px;
+                height: 30px;
+                font-weight: bold;
+                margin-right: 100px;
+                }
+  
+            </style>
+           
+                <h2>Top Minecraft Players</h2>
+                <p>Here are some of the top minecraft players in the world:</p>
+
+            <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom ,#2ecc71 1%, #121212 15%, #1f51da 50% );
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #2ecc71;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .ebook {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+
+    button {
+      background: #2ecc71;
+      border: none;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #27ae60;
+    }
+    </style>
+          
+            <h2>#1.FRAMEFRAGS</h2>
+        <img src="flame pvp.jpg" WIDTH="350" HEIGHT="200">
+        <p>(Immortal Demon)</p>
+            <p>known for his pvp skills and his ability to win fights against multiple opponents at once.
+             He is also known for his entertaining commentary and his ability to make even the most mundane minecraft gameplay exciting to watch.</p>
+             
+        <p>="FlameFrags is a popular Minecraft YouTuber known for his Survival Multiplayer (SMP) adventures, PvP challenges, and high-stakes gameplay across various servers."</p>
+
+        <ul>
+            <li><a href="https://www.youtube.com/@FlameFragsMC" target="_blank">FlameFrags YouTube Channel</a></li>
+        </ul>
+        
+        <h2>#2.DREAM</h2>
+        <img src="dreammon.jpg" WIDTH="350" HEIGHT="200">
+        <P>(best minecraft speedrunner...)</P>
+         <p>known for his speedrunning skills and his ability to complete minecraft challenges in record time.
+          He is also known for his entertaining commentary and his ability to make even the most mundane minecraft gameplay exciting to watch.</p>
+            <p>="Dream is a popular Minecraft YouTuber and content creator known for his Minecraft Manhunt series, where he attempts to complete the game while being hunted by other players."</p>
+        <ul>
+            <li><a href="https://www.youtube.com/@dream" target="_blank">Dream YouTube Channel</a></li>
+        </ul>
+
+        <h2>#3.JUDELOW</h2>
+        <img src="../judelow.jpg" WIDTH="350" HEIGHT="200">
+        <p>(best trap builder)</p>
+        <p>known for his trap-building skills and his ability to create complex and effective traps that can catch even the most experienced players off guard.
+         He is also known for his entertaining commentary and his ability to make even the most mundane minecraft gameplay exciting to watch.</p>
+        <p>="JudeLow is a popular Minecraft YouTuber and content creator widely recognized as one of the game's most skilled "trappers".
+         He is known for inventing and utilizing complex, often unknown game mechanics to create inescapable or one-shot traps in various Survival Multiplayer (SMP) servers."</p>
+        <ul>
+            <li><a href="https://www.youtube.com/@JudeLoSasso" target="_blank">JudeLow YouTube Channel</a></li>
+        </ul>
+
+        </footer>
+        <p>by Cassey M Davidson</p>
+      </container>
+</body>
+</html>

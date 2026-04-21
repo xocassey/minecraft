@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cool Search Bar</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  h1 {
+    color: #2ecc71;
+  }
+
+  /* SEARCH BAR */
+  .search-box {
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s;
+    background: #1f1f1f;
+    color: white;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+  }
+
+  .search-box input:focus {
+    box-shadow: 0 0 20px #2ecc71;
+    transform: scale(1.02);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-size: 18px;
+    color: #2ecc71;
+  }
+
+  /* RESULTS */
+  .results {
+    width: 400px;
+    max-width: 90%;
+    margin-top: 20px;
+  }
+
+  .item {
+    background: #1f1f1f;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border-left: 4px solid #2ecc71;
+    transition: 0.2s;
+  }
+
+  .item:hover {
+    transform: translateX(5px);
+  }
+</style>
+</head>
+
+<body>
+
+<h1>⛏️ Minecraft Search Bar</h1>
+
+<div class="search-box">
+  <span class="search-icon">🔎</span>
+  <input type="text" id="search" placeholder="Search ebooks, items, guides...">
+</div>
+
+<div class="results" id="results"></div>
+
+<script>
+  // Sample data (you can replace with API data later)
+  const data = [
+    "Minecraft Survival Guide eBook",
+    "Redstone Engineering Guide",
+    "Ultimate Building Tips",
+    "How to Defeat the Ender Dragon",
+    "Minecraft Farming Secrets",
+    "Creeper Survival Handbook",
+    "Nether Exploration Guide"
+  ];
+
+  const searchInput = document.getElementById("search");
+  const results = document.getElementById("results");
+
+  function display(items) {
+    results.innerHTML = "";
+
+    if (items.length === 0) {
+      results.innerHTML = "<p>No results found 😢</p>";
+      return;
+    }
+
+    items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.textContent = item;
+      results.appendChild(div);
+    });
+  }
+
+  // initial load
+  display(data);
+
+  // live search
+  searchInput.addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+
+    const filtered = data.filter(item =>
+      item.toLowerCase().includes(value)
+    );
+
+    display(filtered);
+  });
+</script>
+
+</body>
+</html>
